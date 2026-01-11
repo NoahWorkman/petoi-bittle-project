@@ -8,10 +8,12 @@
 - **AI Vision:** Petoi AI Vision Module (not yet installed)
 
 ## Project Status
-- ✅ Controller working (Bluetooth connected)
+- ✅ Controller working (Bluetooth tested and connected)
 - ✅ Voice module working (English, audio enabled)
-- ⏳ Controller customization (pending)
-- ⏳ AI Vision module (future)
+- ⏳ Test robot bark melody (`b20,16,0,16,18,16,0,8,20,8`)
+- ⏳ Link bark to voice command trigger
+- ⏳ Controller customization (customize button mappings)
+- ⏳ AI Vision module (future - Totoro recognition, family recognition)
 
 ## Key Documentation
 | File | Purpose |

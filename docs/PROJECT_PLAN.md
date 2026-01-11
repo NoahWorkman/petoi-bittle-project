@@ -147,7 +147,7 @@ Recognize and respond to family members.
 
 ### Session Log
 - **Jan 2026**: Created GitHub repo, established project plan. Fixed voice module (was stuck in Chinese) - sent `XAa` to switch to English, `XAc` to enable audio. Created robot bark melody.
-- **Nov 2024**: Initial setup, controller working
+- **Nov 2025**: Initial setup, controller working
 
 ### Questions to Research
 - What causes voice command issues?

@@ -82,4 +82,11 @@ If voice commands aren't working, connect via USB and send these commands in Ski
 
 ## License
 
-This project contains code from [PetoiCamp/ESP32_Microbit_Controller](https://github.com/PetoiCamp/ESP32_Microbit_Controller) which is subject to its original license.
+MIT License - See [LICENSE](LICENSE) for details.
+
+This project includes code from:
+- [PetoiCamp/ESP32_Microbit_Controller](https://github.com/PetoiCamp/ESP32_Microbit_Controller) (MIT License)
+- [PetoiCamp/OpenCat](https://github.com/PetoiCamp/OpenCat) (MIT License)
+- Adafruit libraries (BSD/LGPL)
+
+See LICENSE file for full attribution.
