@@ -1,67 +1,85 @@
 # Petoi Bittle Project
 
-Setup guide for controlling Bittle Petoi X v2 with Micro:bit joystick controller.
+A personal project for customizing and extending the Petoi Bittle X v2 robot dog with voice commands, custom controller mappings, and AI vision.
 
 ## Hardware
 
-- **Robot:** Bittle Petoi X v2
-- **Controller:** Micro:bit V2 with joystick module
-- **Requirements:** 2x AAA batteries for controller
+- **Robot:** [Petoi Bittle X v2](https://www.petoi.com/pages/bittle-open-source-bionic-robot-dog)
+- **Board:** BiBoard V1.0
+- **Controller:** [Micro:bit V2 with joystick module](https://www.petoi.com/products/petoi-robot-controller-microbit-gamepad)
+- **Voice Module:** Petoi Voice Command Module
+- **AI Vision:** Petoi AI Vision Module (future)
 
-## Setup Process
+## Project Goals
 
-### 1. Install Petoi Desktop App (Mac)
+1. **Voice Commands** - Get voice control working reliably
+2. **Controller Customization** - Custom button mappings for preferred actions
+3. **AI Vision** - Object recognition (Totoro stuffed animal) and family member recognition
 
-1. Download from [GitHub Releases](https://github.com/PetoiCamp/OpenCat/releases/latest)
-2. Look for Mac `.dmg` file in Assets
-3. Double-click `.dmg` and drag to Applications
-4. Right-click app → Hold Shift → Click Open (bypass security)
+## Quick Start
 
-### 2. Check/Update Bittle Firmware
+### Prerequisites
+- [Petoi Desktop App](https://github.com/PetoiCamp/OpenCat/releases/latest)
+- Micro:bit V2 with joystick module
+- 2x AAA batteries for controller
 
-1. Power OFF Bittle
-2. Connect via USB to Mac
-3. Open Petoi Desktop App
-4. Select serial port (e.g., `/dev/cu.usbserial-*`)
-5. Check current firmware version
-6. Update if needed via Firmware Uploader
+### Setup
+1. Install Petoi Desktop App
+2. Connect Bittle via USB, update firmware if needed
+3. Flash `firmware/microbit-JoyStick.hex` to your Micro:bit
+4. Install batteries in controller
+5. Power on Bittle - controller auto-pairs via Bluetooth
 
-### 3. Setup Micro:bit Controller
+### Voice Module Setup
+If voice commands aren't working, connect via USB and send these commands in Skill Composer:
+- `XAa` - Switch to English
+- `XAc` - Enable audio response
 
-1. Download `microbit-JoyStick.hex` from [Petoi docs](https://docs.petoi.com/extensible-modules/joystick-with-micro-bit)
-2. Connect Micro:bit V2 to Mac via USB
-3. Drag `.hex` file to Micro:bit drive
-4. Wait for LED to stop flashing
+## Documentation
 
-### 4. Connect and Test
+| File | Description |
+|------|-------------|
+| [docs/PROJECT_PLAN.md](docs/PROJECT_PLAN.md) | Full project roadmap and milestones |
+| [docs/reference-links.md](docs/reference-links.md) | External links, serial commands, voice triggers |
+| [docs/controller-map.md](docs/controller-map.md) | Physical button layout and all commands |
+| [docs/controller-configuration.md](docs/controller-configuration.md) | Controller setup guide |
 
-1. Install 2 AAA batteries in controller
-2. Power on Bittle
-3. Controller should auto-pair via Bluetooth
-4. Test joystick movements
+## Controller Button Mappings
+
+| Button | Command |
+|--------|---------|
+| A | hello |
+| B | sit |
+| C (P12) | crawl |
+| D (P13) | walk |
+| E (P14) | trot |
+| F (P15) | rest |
+| Joystick | forward/back/left/right |
+
+## Customizing the Controller
+
+1. Edit `ESP32_Microbit_Controller/Joystick/Microbit_joystick/JoyStickTest.js`
+2. Import into [MakeCode](https://makecode.microbit.org)
+3. Download new .hex file
+4. Flash to Micro:bit (drag .hex to Micro:bit drive)
+
+## Common Bittle Commands
+
+**Movement:** `walk`, `trot`, `crawl`, `forward`, `back`, `left`, `right`
+
+**Poses:** `sit`, `rest`, `balance`, `stand`
+
+**Tricks:** `hello`, `pee`, `stretch`, `pushup`
+
+**Melodies:** `b` followed by note,duration pairs (e.g., `b20,16,0,16,18,16,0,8,20,8` for a robot bark)
 
 ## Resources
 
-- [Petoi Docs](https://docs.petoi.com/)
-- [Micro:bit Joystick Guide](https://docs.petoi.com/extensible-modules/joystick-with-micro-bit)
+- [Petoi Documentation](https://docs.petoi.com/)
 - [OpenCat GitHub](https://github.com/PetoiCamp/OpenCat)
+- [ESP32 Microbit Controller](https://github.com/PetoiCamp/ESP32_Microbit_Controller)
+- [MakeCode for Micro:bit](https://makecode.microbit.org)
 
-## Status
+## License
 
-- [x] Petoi Desktop App installed
-- [x] Firmware checked/updated
-- [x] Micro:bit programmed with joystick firmware
-- [ ] Bluetooth connection tested (pending Bittle battery charge)
-
-## Notes
-
-### Firmware Installation (Nov 9, 2024)
-- Downloaded `microbit-JoyStick.hex` from [ESP32_Microbit_Controller repo](https://raw.githubusercontent.com/PetoiCamp/ESP32_Microbit_Controller/refs/heads/main/microbit-JoyStick.hex)
-- File saved to `/firmware/microbit-JoyStick.hex` (1.4MB)
-- Successfully flashed to Micro:bit V2
-- Firmware flash takes ~15-30 seconds (yellow LED flashes during install)
-
-### Troubleshooting
-- **Red LED flashing 3x on Bittle**: Low battery - charge before testing
-- **Hex file disappears from Micro:bit**: Normal behavior - file auto-programs and vanishes
-- **Flashing takes time**: 1.4MB file requires 15-30 seconds to flash completely
+This project contains code from [PetoiCamp/ESP32_Microbit_Controller](https://github.com/PetoiCamp/ESP32_Microbit_Controller) which is subject to its original license.

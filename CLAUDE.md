@@ -1,108 +1,56 @@
-# Petoi Bittle Controller Project
-
-## Project Plan
-See `docs/PROJECT_PLAN.md` for the full project roadmap with three phases:
-1. **Voice Commands** (Priority: High) - Fix non-working voice commands
-2. **Controller Customization** (Priority: Medium) - Customize button mappings
-3. **AI Vision Module** (Priority: Low) - Future integration
-
-## Documentation
-- `docs/reference-links.md` - All external links and quick reference for:
-  - Voice module serial commands (`XAa`, `XAc`, etc.)
-  - Voice triggers ("Play sound", "Be quiet", etc.)
-  - BiBoard audio capabilities
-  - AI Vision module docs
-- `docs/controller-map.md` - Physical button layout and commands
-- `docs/controller-configuration.md` - Setup guide
+# Petoi Bittle Project - Claude Context
 
 ## Hardware
+- **Robot:** Bittle X v2
 - **Board:** BiBoard V1.0
 - **Voice Module:** Petoi Voice Command Module (has built-in speaker with pre-recorded phrases)
 - **Controller:** Micro:bit V2 with joystick module
+- **AI Vision:** Petoi AI Vision Module (not yet installed)
 
-## Current Status: ✅ Controller Working!
+## Project Status
+- ✅ Controller working (Bluetooth connected)
+- ✅ Voice module working (English, audio enabled)
+- ⏳ Controller customization (pending)
+- ⏳ AI Vision module (future)
 
-### Completed
-- [x] Petoi Desktop App installed
-- [x] Bittle firmware updated
-- [x] Micro:bit programmed with joystick firmware
-- [x] Controller repository cloned to `/ESP32_Microbit_Controller/`
-- [x] Documentation created
-- [x] Batteries installed, Bluetooth connected
-- [x] Controller tested and working
+## Key Documentation
+| File | Purpose |
+|------|---------|
+| `docs/PROJECT_PLAN.md` | Roadmap with 3 phases and milestones |
+| `docs/reference-links.md` | All external links, serial commands, voice triggers |
+| `docs/controller-map.md` | Physical button layout and commands |
+| `docs/controller-configuration.md` | Setup guide |
 
-### Next Step
-**Configure controller with new actions** - Customize button mappings to send different commands
+## Quick Reference
 
-## Quick Start: Customize Controller
+### Voice Module Serial Commands
+Send via Petoi Desktop App → Skill Composer → text field → Send:
+- `XAa` - Switch to English
+- `XAb` - Switch to Chinese
+- `XAc` - Enable audio response
+- `XAd` - Disable audio response
 
-### Current Button Mappings
-| Button | Current Command |
-|--------|----------------|
+### Custom Sounds
+- **Robot Bark:** `b20,16,0,16,18,16,0,8,20,8`
+
+### Controller Button Mappings
+| Button | Command |
+|--------|---------|
+| A | hello |
+| B | sit |
 | C (P12) | crawl |
 | D (P13) | walk |
 | E (P14) | trot |
 | F (P15) | rest |
-| A | hello |
-| B | sit |
 | Joystick | forward/back/left/right |
 
-### How to Customize
+### Key Source Files
+- `ESP32_Microbit_Controller/Joystick/Microbit_joystick/JoyStickTest.js` - Controller button mappings
+- `ESP32_Microbit_Controller/controller/OpenCatEsp32_micorbit_BittleR/src/voice.h` - Voice module code
+- `ESP32_Microbit_Controller/controller/OpenCatEsp32_micorbit_BittleR/src/sound.h` - Sound/melody code
 
-**Source Code Location:**
-`/Users/noahworkman-studiom4/Projects/petoi-bittle-project/ESP32_Microbit_Controller/Joystick/Microbit_joystick/JoyStickTest.js`
-
-**Key Lines to Edit:**
-- Line 31: Button C (P12) command
-- Line 36: Button D (P13) command
-- Line 41: Button E (P14) command
-- Line 46: Button F (P15) command
-- Line 51: Button A command
-- Line 56: Button B command
-
-**Steps:**
-1. Edit `JoyStickTest.js` - Change command strings (e.g., `"crawl"` → `"pee"`)
-2. Import into MakeCode: https://makecode.microbit.org
-3. Download new .hex file
-4. Flash to Micro:bit (drag .hex to Micro:bit drive)
-
-**Available Bittle Commands:**
-Common commands: `walk`, `trot`, `crawl`, `sit`, `rest`, `hello`, `pee`, `stretch`, `pushup`, `balance`, `forward`, `back`, `left`, `right`
-
-Find more: Check Petoi docs or test via Petoi Desktop App serial monitor
-
-## Key Files
-
-### Documentation
-- `docs/controller-map.md` - Complete physical layout & all commands
-- `docs/controller-configuration.md` - Setup guide
-- `documentation/reference-links.md` - Web resources
-
-### Firmware
-- `firmware/microbit-JoyStick.hex` - Current firmware (1.4MB)
-
-### Source Code
-- `ESP32_Microbit_Controller/Joystick/Microbit_joystick/JoyStickTest.js` - Button mappings
-
-## Resources
-
-- **MakeCode Editor:** https://makecode.microbit.org
-- **Petoi Docs:** https://docs.petoi.com/
-- **Controller GitHub:** https://github.com/PetoiCamp/ESP32_Microbit_Controller
-- **Product Page:** https://www.petoi.com/products/petoi-robot-controller-microbit-gamepad
-
-## Testing Commands
-
-**Via Petoi Desktop App:**
-1. Connect Bittle via USB
-2. Open serial monitor
-3. Test commands directly (e.g., type `ksit`, `kwkF`)
-
-**Via Controller:**
-1. Power on Bittle (auto-pairs with controller)
-2. Press buttons to test
-3. LED shows feedback on Micro:bit
-
----
-**Last Updated:** Nov 23, 2024
-**Status:** Ready to customize button mappings
+## Common Bittle Commands
+**Movement:** `walk`, `trot`, `crawl`, `forward`, `back`, `left`, `right`
+**Poses:** `sit`, `rest`, `balance`, `stand`
+**Tricks:** `hello`, `pee`, `stretch`, `pushup`
+**Melodies:** `b` followed by note,duration pairs (e.g., `b20,16,0,16,18,16`)

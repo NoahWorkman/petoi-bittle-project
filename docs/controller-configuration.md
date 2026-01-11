@@ -2,7 +2,7 @@
 
 ## Your Current Firmware
 - **File:** microbit-JoyStick.hex
-- **Location:** `/Users/noahworkman-studiom4/Projects/petoi-bittle-project/firmware/microbit-JoyStick.hex`
+- **Location:** `firmware/microbit-JoyStick.hex`
 - **Status:** Already flashed to Micro:bit V2
 
 ## Quick Reference
@@ -35,7 +35,7 @@ Since the source code isn't published separately, you need to import your hex fi
 
 1. Go to https://makecode.microbit.org
 2. Click **Import** → **Import File**
-3. Select: `/Users/noahworkman-studiom4/Projects/petoi-bittle-project/firmware/microbit-JoyStick.hex`
+3. Select: `firmware/microbit-JoyStick.hex` from this repo
 4. View the blocks or switch to JavaScript to see exact mappings
 
 ## Source Code Reference
