@@ -6,6 +6,20 @@ See `docs/PROJECT_PLAN.md` for the full project roadmap with three phases:
 2. **Controller Customization** (Priority: Medium) - Customize button mappings
 3. **AI Vision Module** (Priority: Low) - Future integration
 
+## Documentation
+- `docs/reference-links.md` - All external links and quick reference for:
+  - Voice module serial commands (`XAa`, `XAc`, etc.)
+  - Voice triggers ("Play sound", "Be quiet", etc.)
+  - BiBoard audio capabilities
+  - AI Vision module docs
+- `docs/controller-map.md` - Physical button layout and commands
+- `docs/controller-configuration.md` - Setup guide
+
+## Hardware
+- **Board:** BiBoard V1.0
+- **Voice Module:** Petoi Voice Command Module (has built-in speaker with pre-recorded phrases)
+- **Controller:** Micro:bit V2 with joystick module
+
 ## Current Status: ✅ Controller Working!
 
 ### Completed
