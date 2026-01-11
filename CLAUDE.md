@@ -1,5 +1,11 @@
 # Petoi Bittle Controller Project
 
+## Project Plan
+See `docs/PROJECT_PLAN.md` for the full project roadmap with three phases:
+1. **Voice Commands** (Priority: High) - Fix non-working voice commands
+2. **Controller Customization** (Priority: Medium) - Customize button mappings
+3. **AI Vision Module** (Priority: Low) - Future integration
+
 ## Current Status: ✅ Controller Working!
 
 ### Completed
