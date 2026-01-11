@@ -48,11 +48,20 @@ Setup guide for controlling Bittle Petoi X v2 with Micro:bit joystick controller
 
 ## Status
 
-- [ ] Petoi Desktop App installed
-- [ ] Firmware checked/updated
-- [ ] Micro:bit programmed
-- [ ] Bluetooth connection tested
+- [x] Petoi Desktop App installed
+- [x] Firmware checked/updated
+- [x] Micro:bit programmed with joystick firmware
+- [ ] Bluetooth connection tested (pending Bittle battery charge)
 
 ## Notes
 
-*Add your setup notes and troubleshooting tips here*
+### Firmware Installation (Nov 9, 2024)
+- Downloaded `microbit-JoyStick.hex` from [ESP32_Microbit_Controller repo](https://raw.githubusercontent.com/PetoiCamp/ESP32_Microbit_Controller/refs/heads/main/microbit-JoyStick.hex)
+- File saved to `/firmware/microbit-JoyStick.hex` (1.4MB)
+- Successfully flashed to Micro:bit V2
+- Firmware flash takes ~15-30 seconds (yellow LED flashes during install)
+
+### Troubleshooting
+- **Red LED flashing 3x on Bittle**: Low battery - charge before testing
+- **Hex file disappears from Micro:bit**: Normal behavior - file auto-programs and vanishes
+- **Flashing takes time**: 1.4MB file requires 15-30 seconds to flash completely
