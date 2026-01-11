@@ -136,12 +136,17 @@ Recognize and respond to family members.
 - `back` - Step back
 - `gyro` - Toggle gyroscope
 
+### Custom Sounds
+- **Robot Bark:** `b20,16,0,16,18,16,0,8,20,8`
+  - Send via serial monitor to test
+  - Can be linked to a voice command trigger
+
 ---
 
 ## Notes
 
 ### Session Log
-- **Jan 2026**: Created GitHub repo, established project plan
+- **Jan 2026**: Created GitHub repo, established project plan. Fixed voice module (was stuck in Chinese) - sent `XAa` to switch to English, `XAc` to enable audio. Created robot bark melody.
 - **Nov 2024**: Initial setup, controller working
 
 ### Questions to Research
