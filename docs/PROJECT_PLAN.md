@@ -68,7 +68,26 @@ Controller connected and working with default mappings:
 
 ---
 
-## Phase 3: AI Vision Module (Priority: Low - Future)
+## Phase 3: MCP Server (Priority: Medium)
+
+### Goal
+Build a custom Model Context Protocol server to control Bittle via Bluetooth from Claude Code.
+
+See **[MCP_PLAN.md](MCP_PLAN.md)** for full details.
+
+### Why
+- Control Bittle directly from Claude Code
+- Foundation for AI Vision integration
+- No random third-party dependencies
+
+### Milestones
+- [ ] Phase 1: Basic MCP server (connect, move, pose commands)
+- [ ] Phase 2: AI Vision integration
+- [ ] Phase 3: Advanced reactive behaviors
+
+---
+
+## Phase 4: AI Vision Module (Priority: Low - Future)
 
 ### Goal
 Integrate AI Vision module with specific recognition targets.

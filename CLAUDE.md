@@ -13,12 +13,14 @@
 - ⏳ Test robot bark melody (`b20,16,0,16,18,16,0,8,20,8`)
 - ⏳ Link bark to voice command trigger
 - ⏳ Controller customization (customize button mappings)
+- ⏳ MCP Server (control Bittle from Claude Code via Bluetooth)
 - ⏳ AI Vision module (future - Totoro recognition, family recognition)
 
 ## Key Documentation
 | File | Purpose |
 |------|---------|
-| `docs/PROJECT_PLAN.md` | Roadmap with 3 phases and milestones |
+| `docs/PROJECT_PLAN.md` | Roadmap with 4 phases and milestones |
+| `docs/MCP_PLAN.md` | MCP server design and implementation plan |
 | `docs/reference-links.md` | All external links, serial commands, voice triggers |
 | `docs/controller-map.md` | Physical button layout and commands |
 | `docs/controller-configuration.md` | Setup guide |
