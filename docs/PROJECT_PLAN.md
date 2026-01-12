@@ -4,29 +4,34 @@
 Long-term project to fully customize and expand capabilities of Petoi Bittle X v2 robot dog.
 
 ## Current Status
-- Controller connected via Bluetooth (working)
-- Default button mappings active (not customized)
-- Voice commands not working
-- AI Vision module not yet integrated
+- ✅ Controller connected via Bluetooth (working)
+- ✅ Voice commands working (English, audio enabled)
+- ⏳ Default button mappings active (not customized)
+- ⏳ MCP Server (planned - control from Claude Code)
+- ⏳ AI Vision module not yet integrated
 
 ---
 
-## Phase 1: Voice Commands (Priority: High)
+## Phase 1: Voice Commands ✅ COMPLETE
 
 ### Goal
 Get voice commands working reliably with Bittle.
 
-### Current Issue
-Voice commands are not functioning - needs diagnosis.
+### Resolution
+Voice module was stuck in Chinese. Fixed by sending serial commands:
+- `XAa` - Switch to English
+- `XAc` - Enable audio response
 
-### Tasks
-- [ ] Diagnose why voice commands aren't working
-  - Check if voice module is properly connected
-  - Verify firmware supports voice commands
-  - Test via Petoi Desktop App serial monitor
-- [ ] Document available voice commands
-- [ ] Test basic voice recognition
-- [ ] Configure custom voice triggers if supported
+### Completed Tasks
+- [x] Diagnosed issue (was set to Chinese language)
+- [x] Switched to English via serial command
+- [x] Enabled audio response
+- [x] Voice commands now working
+- [x] Created robot bark melody: `b20,16,0,16,18,16,0,8,20,8`
+
+### Remaining
+- [ ] Test robot bark melody on charged robot
+- [ ] Link bark to custom voice trigger
 
 ### Resources
 - [Petoi Voice Command Module docs](https://docs.petoi.com/extensible-modules/voice-command-module)
