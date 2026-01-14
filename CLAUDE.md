@@ -21,9 +21,32 @@
 |------|---------|
 | `docs/PROJECT_PLAN.md` | Roadmap with 4 phases and milestones |
 | `docs/MCP_PLAN.md` | MCP server design and implementation plan |
+| `mcp/README.md` | MCP server setup and usage guide |
 | `docs/reference-links.md` | All external links, serial commands, voice triggers |
 | `docs/controller-map.md` | Physical button layout and commands |
 | `docs/controller-configuration.md` | Setup guide |
+
+## MCP Server (mcp/)
+The MCP server is implemented and ready for testing:
+
+```bash
+# Install
+cd mcp && uv sync
+
+# Register with Claude Code
+claude mcp add bittle -- uv --directory /path/to/mcp run python -m bittle_mcp
+```
+
+### MCP Tools Available
+| Tool | Description |
+|------|-------------|
+| `connect(address)` | Connect via Bluetooth |
+| `disconnect()` | Disconnect |
+| `status()` | Connection status |
+| `send(command)` | Send command (sit, walk, hello, bark) |
+| `move(direction, gait)` | Move with gait |
+| `play_sound(sound)` | Play bark sound |
+| `list_commands()` | Show all commands |
 
 ## Quick Reference
 

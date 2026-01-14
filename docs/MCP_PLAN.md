@@ -36,18 +36,21 @@ Claude Code ←→ MCP Server ←→ Bluetooth ←→ Bittle (BiBoard)
             AI Vision Module (future)
 ```
 
-## Planned Directory Structure
+## Directory Structure (Implemented)
 
 ```
 petoi-bittle-project/
 ├── mcp/
-│   ├── __init__.py
-│   ├── server.py        # Main MCP server
-│   ├── commands.py      # Command definitions
-│   ├── bluetooth.py     # Bluetooth connection handler
-│   └── vision.py        # AI Vision tools (Phase 2)
-├── docs/
-│   └── MCP_SETUP.md     # Installation & usage guide
+│   ├── pyproject.toml           # Package config
+│   ├── .python-version          # Python 3.11
+│   ├── README.md                # MCP setup guide
+│   └── src/
+│       └── bittle_mcp/
+│           ├── __init__.py      # Main MCP server with tools
+│           ├── __main__.py      # Entry point
+│           ├── commands.py      # Command definitions
+│           ├── bluetooth.py     # BLE connection handler
+│           └── vision.py        # AI Vision tools (Phase 2 - TODO)
 ```
 
 ## Phase 1: Basic MCP Server
@@ -97,11 +100,11 @@ dependencies = [
 ```
 
 ### Tasks
-- [ ] Set up Python project structure
-- [ ] Implement Bluetooth connection
-- [ ] Implement basic commands
-- [ ] Test with Claude Code
-- [ ] Document setup process
+- [x] Set up Python project structure
+- [x] Implement Bluetooth connection (using bleak)
+- [x] Implement basic commands
+- [ ] Test with Claude Code (needs robot)
+- [x] Document setup process (mcp/README.md)
 
 ## Phase 2: AI Vision Integration
 
@@ -154,18 +157,21 @@ async def vision_on_detect(label: str, command: str) -> str:
 - Commands: Single letters or `k<skill>` format
 - Melodies: `b<note>,<duration>,<note>,<duration>,...`
 
-## Getting Started (Future)
+## Getting Started
 
 ```bash
 # Install dependencies
 cd petoi-bittle-project/mcp
-pip install -e .
+uv sync  # or: pip install -e .
 
 # Find Bittle's Bluetooth address
-# Mac: System Preferences → Bluetooth → Bittle → (i) → Address
+# Mac: System Settings → Bluetooth → Bittle → (i) → Address
 
-# Configure Claude Code to use MCP
-# Add to ~/.claude/settings.json or project settings
+# Register with Claude Code
+claude mcp add bittle -- uv --directory $(pwd) run python -m bittle_mcp
+
+# Test with MCP Inspector
+npx @modelcontextprotocol/inspector uv --directory . run python -m bittle_mcp
 ```
 
 ## Notes
