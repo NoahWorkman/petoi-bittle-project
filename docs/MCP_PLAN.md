@@ -167,8 +167,11 @@ uv sync  # or: pip install -e .
 # Find Bittle's Bluetooth address
 # Mac: System Settings → Bluetooth → Bittle → (i) → Address
 
-# Register with Claude Code
-claude mcp add bittle -- uv --directory $(pwd) run python -m bittle_mcp
+# Register with Claude Code (flags BEFORE server name!)
+claude mcp add --scope user bittle -- uv --directory $(pwd) run python -m bittle_mcp
+
+# Verify installation
+claude mcp list
 
 # Test with MCP Inspector
 npx @modelcontextprotocol/inspector uv --directory . run python -m bittle_mcp

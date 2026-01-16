@@ -44,12 +44,30 @@ bluetoothctl scan on
 
 ## Register with Claude Code
 
-```bash
-# Add the MCP server
-claude mcp add bittle -- uv --directory /path/to/petoi-bittle-project/mcp run python -m bittle_mcp
+**Important:** All flags must come BEFORE the server name.
 
-# Or with absolute path
-claude mcp add bittle -- uv --directory $(pwd) run python -m bittle_mcp
+```bash
+# Add as user-scoped MCP (available in all projects)
+claude mcp add --scope user bittle -- uv --directory /path/to/petoi-bittle-project/mcp run python -m bittle_mcp
+
+# Or with current directory
+claude mcp add --scope user bittle -- uv --directory $(pwd) run python -m bittle_mcp
+
+# Verify installation
+claude mcp list
+
+# Check status in Claude Code session
+/mcp
+```
+
+### Management
+
+```bash
+# Remove MCP
+claude mcp remove bittle
+
+# Re-add if needed
+claude mcp add --scope user bittle -- uv --directory /path/to/mcp run python -m bittle_mcp
 ```
 
 ## Usage

@@ -33,8 +33,11 @@ The MCP server is implemented and ready for testing:
 # Install
 cd mcp && uv sync
 
-# Register with Claude Code
-claude mcp add bittle -- uv --directory /path/to/mcp run python -m bittle_mcp
+# Register with Claude Code (flags BEFORE server name)
+claude mcp add --scope user bittle -- uv --directory /path/to/mcp run python -m bittle_mcp
+
+# Verify
+claude mcp list
 ```
 
 ### MCP Tools Available
