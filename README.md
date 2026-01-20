@@ -13,9 +13,11 @@ A personal project for customizing and extending the Petoi Bittle X v2 robot dog
 ## Project Goals
 
 1. **Voice Commands** - Get voice control working reliably ✅
-2. **Controller Customization** - Custom button mappings for preferred actions
-3. **MCP Server** - Control Bittle from Claude Code via Bluetooth
+2. **Controller Customization** - Custom button mappings for preferred actions (in progress)
+3. **MCP Server** - Control Bittle from Claude Code via Bluetooth (in progress) 
 4. **AI Vision** - Object recognition (Totoro stuffed animal) and family member recognition
+5. **AI Vison 2.0 ** - Common undesirable garden plant vision training
+   
 
 ## Quick Start
 
