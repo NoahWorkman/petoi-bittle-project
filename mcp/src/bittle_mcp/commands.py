@@ -50,8 +50,6 @@ COMMANDS: dict[str, str] = {
     "gyro_on": "g",
     "gyro_off": "G",
     "pause": "p",
-    "calibrate": "c",
-
     # Custom sounds
     "bark": "b20,16,0,16,18,16,0,8,20,8",
 }

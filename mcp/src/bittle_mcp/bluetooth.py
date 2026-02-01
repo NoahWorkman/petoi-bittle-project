@@ -7,7 +7,6 @@ Bittle's BiBoard uses Bluetooth SPP (Serial Port Profile) over BLE.
 Connection details:
 - Baud rate: 115200 (handled by the device)
 - Protocol: UART over BLE
-- Default PIN: 0000 or 1234
 """
 
 import asyncio
@@ -156,16 +155,22 @@ class MockBittleConnection(BittleConnection):
     """Mock connection for testing without hardware."""
 
     async def connect(self, address: str) -> bool:
+        if self._connected:
+            await self.disconnect()
         logger.info(f"[MOCK] Connected to {address}")
         self._address = address
         self._connected = True
+        self._client = object()  # sentinel so is_connected returns True
         return True
 
     async def disconnect(self) -> None:
         logger.info("[MOCK] Disconnected")
+        self._client = None
         self._connected = False
 
     async def send(self, command: str) -> None:
+        if not self._connected or not self._client:
+            raise RuntimeError("Not connected to Bittle")
         logger.info(f"[MOCK] Sent: {command}")
 
     async def scan(self, timeout: float = 10.0) -> list[dict]:

@@ -10,6 +10,7 @@ This MCP server exposes tools to:
 """
 
 import logging
+import re
 import sys
 from contextlib import asynccontextmanager
 
@@ -59,6 +60,17 @@ async def connect(address: str) -> str:
     if bittle is None:
         return "Error: Server not initialized"
 
+    # Validate address format: standard MAC (XX:XX:XX:XX:XX:XX) or macOS UUID
+    mac_re = re.compile(r"^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$")
+    uuid_re = re.compile(
+        r"^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$"
+    )
+    if not mac_re.match(address) and not uuid_re.match(address):
+        return (
+            "Error: Invalid address format. "
+            "Expected MAC (XX:XX:XX:XX:XX:XX) or macOS UUID."
+        )
+
     try:
         await bittle.connect(address)
         return f"Connected to Bittle at {address}"
@@ -97,7 +109,6 @@ async def send(command: str) -> str:
 
     Args:
         command: Command name (rest, sit, walk, trot, crawl, hello, bark, etc.)
-                 or raw serial command
 
     Available commands:
     - Movement: forward, backward, left, right
@@ -112,8 +123,11 @@ async def send(command: str) -> str:
     if not bittle.is_connected:
         return "Error: Not connected to Bittle"
 
-    # Look up command code or use raw command
-    cmd = COMMANDS.get(command.lower(), command)
+    # Only allow known commands — no raw passthrough
+    cmd = COMMANDS.get(command.lower())
+    if cmd is None:
+        valid = ", ".join(sorted(COMMANDS.keys()))
+        return f"Unknown command: {command}. Valid commands: {valid}"
 
     try:
         await bittle.send(cmd)
@@ -174,7 +188,10 @@ async def play_sound(sound: str = "bark") -> str:
         "bark": "b20,16,0,16,18,16,0,8,20,8",
     }
 
-    cmd = sounds.get(sound.lower(), sound)
+    cmd = sounds.get(sound.lower())
+    if cmd is None:
+        valid = ", ".join(sorted(sounds.keys()))
+        return f"Unknown sound: {sound}. Valid sounds: {valid}"
 
     try:
         await bittle.send(cmd)
