@@ -10,10 +10,11 @@
 ## Project Status
 - ✅ Controller working (Bluetooth tested and connected)
 - ✅ Voice module working (English, audio enabled)
-- ⏳ Test robot bark melody (`b20,16,0,16,18,16,0,8,20,8`)
+- ⏳ Test robot bark melody (`b14,4,17,4,14,4,17,4,14,2`) — updated from original, uses audible note range
 - ⏳ Link bark to voice command trigger
 - ⏳ Controller customization (customize button mappings)
-- ⏳ MCP Server (control Bittle from Claude Code via Bluetooth)
+- ✅ MCP Server (control Bittle from Claude Code via Bluetooth)
+- ✅ Sequence tool (chain commands with delays for natural language control)
 - ⏳ AI Vision module (future - Totoro recognition, family recognition)
 
 ## Key Documentation
@@ -49,6 +50,7 @@ claude mcp list
 | `send(command)` | Send command (sit, walk, hello, bark) |
 | `move(direction, gait)` | Move with gait |
 | `play_sound(sound)` | Play bark sound |
+| `sequence(steps)` | Run commands in sequence with delays |
 | `list_commands()` | Show all commands |
 
 ## Quick Reference
@@ -61,7 +63,7 @@ Send via Petoi Desktop App → Skill Composer → text field → Send:
 - `XAd` - Disable audio response
 
 ### Custom Sounds
-- **Robot Bark:** `b20,16,0,16,18,16,0,8,20,8`
+- **Robot Bark:** `b14,4,17,4,14,4,17,4,14,2` (notes 14,17 are in the reliably audible range)
 
 ### Controller Button Mappings
 | Button | Command |
@@ -78,6 +80,14 @@ Send via Petoi Desktop App → Skill Composer → text field → Send:
 - `ESP32_Microbit_Controller/Joystick/Microbit_joystick/JoyStickTest.js` - Controller button mappings
 - `ESP32_Microbit_Controller/controller/OpenCatEsp32_micorbit_BittleR/src/voice.h` - Voice module code
 - `ESP32_Microbit_Controller/controller/OpenCatEsp32_micorbit_BittleR/src/sound.h` - Sound/melody code
+
+## Next Session TODO
+1. **Confirm MCP is working** — restart MCP server, connect to Bittle, run basic commands
+2. **Test new bark melody** — verify `b14,4,17,4,14,4,17,4,14,2` is audible, iterate if needed
+3. **Controller mapping** — document current Micro:bit remote button mappings and plan new custom commands to add
+4. **Update project plan** — update `docs/PROJECT_PLAN.md` with completed milestones and remaining work
+5. **Security audit** — check repo for leaked secrets (Bluetooth IDs, keys, tokens), review `.gitignore`, ensure nothing sensitive is committed
+6. **Push changes** — commit and push all updates
 
 ## Common Bittle Commands
 **Movement:** `walk`, `trot`, `crawl`, `forward`, `back`, `left`, `right`

@@ -3,7 +3,7 @@
 import pytest
 
 import bittle_mcp
-from bittle_mcp import connect, disconnect, send, move, play_sound, status, list_commands
+from bittle_mcp import scan, connect, disconnect, send, move, play_sound, status, list_commands
 from bittle_mcp.bluetooth import MockBittleConnection
 
 
@@ -14,6 +14,19 @@ def setup_mock_connection():
     bittle_mcp.bittle = mock
     yield mock
     bittle_mcp.bittle = None
+
+
+# --- scan ---
+
+async def test_scan_returns_mock_device(setup_mock_connection):
+    result = await scan()
+    assert "MockBittle" in result
+    assert "00:00:00:00:00:00" in result
+
+
+async def test_scan_custom_timeout(setup_mock_connection):
+    result = await scan(timeout=5.0)
+    assert "Found" in result
 
 
 # --- connect ---

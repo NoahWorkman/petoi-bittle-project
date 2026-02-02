@@ -9,6 +9,7 @@ This MCP server exposes tools to:
 - Query status
 """
 
+import asyncio
 import logging
 import re
 import sys
@@ -48,6 +49,29 @@ async def app_lifespan(server: FastMCP):
 
 # Initialize MCP server
 mcp = FastMCP("bittle", lifespan=app_lifespan)
+
+
+@mcp.tool()
+async def scan(timeout: float = 10.0) -> str:
+    """Scan for nearby Bittle devices over Bluetooth LE.
+
+    Args:
+        timeout: Scan duration in seconds (default 10)
+    """
+    if bittle is None:
+        return "Error: Server not initialized"
+
+    try:
+        devices = await bittle.scan(timeout=timeout)
+    except Exception as e:
+        logger.error(f"Scan failed: {e}")
+        return f"Scan failed: {e}"
+
+    if not devices:
+        return "No Bittle devices found. Make sure Bittle is powered on and not connected to another device."
+
+    lines = [f"  {d['name']}: {d['address']}" for d in devices]
+    return f"Found {len(devices)} device(s):\n" + "\n".join(lines)
 
 
 @mcp.tool()
@@ -185,7 +209,7 @@ async def play_sound(sound: str = "bark") -> str:
 
     # Predefined sounds
     sounds = {
-        "bark": "b20,16,0,16,18,16,0,8,20,8",
+        "bark": "b14,4,17,4,14,4,17,4,14,2",
     }
 
     cmd = sounds.get(sound.lower())
@@ -199,6 +223,64 @@ async def play_sound(sound: str = "bark") -> str:
     except Exception as e:
         logger.error(f"Sound failed: {e}")
         return f"Sound failed: {e}"
+
+
+@mcp.tool()
+async def sequence(steps: list[dict]) -> str:
+    """Run a sequence of commands with delays between them.
+
+    Each step is a dict with "command" (required) and "delay" in seconds (optional, default 1.0).
+    Commands can be any valid send() command name or "bark" for sound.
+
+    Example steps:
+        [
+            {"command": "walk_forward", "delay": 2.0},
+            {"command": "pause"},
+            {"command": "left", "delay": 1.0},
+            {"command": "walk_forward", "delay": 2.0},
+            {"command": "pause"},
+            {"command": "bark"},
+            {"command": "sit"}
+        ]
+
+    Args:
+        steps: List of step dicts, each with "command" and optional "delay" (seconds to wait after)
+    """
+    if bittle is None:
+        return "Error: Server not initialized"
+
+    if not bittle.is_connected:
+        return "Error: Not connected to Bittle"
+
+    if not steps:
+        return "Error: No steps provided"
+
+    sounds = {"bark": "b14,4,17,4,14,4,17,4,14,2"}
+    results = []
+
+    for i, step in enumerate(steps):
+        command = step.get("command", "")
+        delay = step.get("delay", 1.0)
+
+        # Resolve command: check sounds first, then regular commands
+        cmd = sounds.get(command.lower()) or COMMANDS.get(command.lower())
+        if cmd is None:
+            valid = ", ".join(sorted(COMMANDS.keys()))
+            results.append(f"Step {i + 1}: Unknown command '{command}'. Valid: {valid}")
+            break
+
+        try:
+            await bittle.send(cmd)
+            results.append(f"Step {i + 1}: {command}")
+        except Exception as e:
+            results.append(f"Step {i + 1}: Failed ({e})")
+            break
+
+        # Wait between steps (skip delay after the last step)
+        if i < len(steps) - 1 and delay > 0:
+            await asyncio.sleep(delay)
+
+    return "Sequence complete:\n" + "\n".join(results)
 
 
 @mcp.tool()
@@ -218,7 +300,7 @@ Directions:
 {directions_list}
 
 Sounds:
-  bark: b20,16,0,16,18,16,0,8,20,8
+  bark: b14,4,17,4,14,4,17,4,14,2
 """
 
 
