@@ -46,6 +46,7 @@ Since the source code isn't published separately, you need to import your hex fi
 - Protocol: UART over Bluetooth
 - Target: ESP32 BiBoard on Bittle
 - Commands: String-based (e.g., "walk", "sit", "forward")
+- **Pairing order: Power on the Micro:bit first, then the Bittle.** Auto-pairing is first-come-first-serve. If the connection fails, reset the BiBoard and repeat with the correct power-on order.
 
 ## Notes
 - The actual microbit-JoyStick.hex may have different/additional commands

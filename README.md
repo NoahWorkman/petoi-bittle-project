@@ -31,7 +31,10 @@ A personal project for customizing and extending the Petoi Bittle X v2 robot dog
 2. Connect Bittle via USB, update firmware if needed
 3. Flash `firmware/microbit-JoyStick.hex` to your Micro:bit
 4. Install batteries in controller
-5. Power on Bittle - controller auto-pairs via Bluetooth
+5. **Power on the Micro:bit controller first**
+6. **Then power on the Bittle** - controller auto-pairs via Bluetooth
+
+> **Pairing order matters:** The Micro:bit must be powered on before the Bittle. Bluetooth auto-pairing is first-come-first-serve, so the controller needs to be broadcasting before the BiBoard starts scanning. If the connection fails, reset the BiBoard and try again with the correct power-on order.
 
 ### Voice Module Setup
 If voice commands aren't working, connect via USB and send these commands in Skill Composer:
